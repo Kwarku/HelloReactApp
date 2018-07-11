@@ -12,24 +12,10 @@ class App extends Component {
     ]
   };
 
-  changeNameHandler = () => {
-    // console.log("It's clicked!")
-    // DONT'T DO THIS : this.state.pesrons[1].name ='Jakub';
-
+  changeNameHandler = (newName) => {
     this.setState({
       pesrons: [
-        { name: 'Michał', age: 27 },
-        { name: 'Krystian', age: 35 },
-        { name: 'Karol', age: 12 },
-        { name: 'Paweł', age: 25 },
-      ]
-    });
-  }
-
-  reChangeNameHandler = () => {
-    this.setState({
-      pesrons: [
-        { name: 'Paweł', age: 25 },
+        { name: newName, age: 25 },
         { name: 'Karol', age: 12 },
         { name: 'Krystian', age: 35 },
         { name: 'Michał', age: 27 },
@@ -42,9 +28,11 @@ class App extends Component {
       <div className="App">
         <h1>Hi, this is my first React App</h1>
         <p> This is some text</p>
-        <button onClick={this.changeNameHandler}>Change Person </button>
-        <button onClick={this.reChangeNameHandler}> re change Person </button>
-        
+        <button
+          // This way using bind method is better. USE IT
+          onClick={this.changeNameHandler.bind(this, 'Pafcio')}>Change Person
+        </button>
+
         <Person
           name={this.state.pesrons[0].name}
           age={this.state.pesrons[0].age} />
@@ -56,9 +44,11 @@ class App extends Component {
         <Person
           name={this.state.pesrons[2].name}
           age={this.state.pesrons[2].age}
-          click={this.changeNameHandler}
-        >My hobby is Math</Person>
-        
+          // This way using () => is worst
+          click={() => this.changeNameHandler('Paweł!111')}
+        >My hobby is Math
+        </Person>
+
         <Person
           name={this.state.pesrons[3].name}
           age={this.state.pesrons[3].age} />
