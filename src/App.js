@@ -12,12 +12,16 @@ class App extends Component {
     ]
   };
   
+changeNameHandler = () => {
+  console.log("It's clicked!")
+}
+
   render() {
         return (
          <div className="App">
            <h1>Hi, this is my first React App</h1>
            <p> This is some text</p>
-           <button>Change Person </button>
+           <button onClick={this.changeNameHandler}>Change Person </button>
            <Person name={this.state.pesrons[0].name} age={this.state.pesrons[0].age}/>
            <Person name={this.state.pesrons[1].name} age={this.state.pesrons[1].age}/>
            <Person name={this.state.pesrons[2].name} age={this.state.pesrons[2].age}>My hobby is Math </Person>
