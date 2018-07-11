@@ -13,21 +13,49 @@ class App extends Component {
   };
 
 dynamicChangeNameMethodHandler = (event) =>{
-  this.setState({
-    pesrons:[
-      { name: 'Paweł', age: 25 },
-      { name: event.target.value, age: 12 },
-      { name: 'Krystian', age: 35 },
-      { name: 'Michał', age: 27 },
-    ]
-  });
-}
+    this.setState({
+      pesrons:[
+        { name: 'Paweł', age: 25 },
+        { name: event.target.value, age: 12 },
+        { name: 'Krystian', age: 35 },
+        { name: 'Michał', age: 27 },
+      ]
+    });
+  }
+
+  drawAgeHandler = (maxAge) => {
+    this.setState({
+      pesrons: [
+        { name: 'Paweł', age: Math.floor(Math.random() * maxAge)+1 },
+        { name: 'Karol', age: Math.floor(Math.random() * maxAge)+1 },
+        { name: 'Krystian', age: Math.floor(Math.random() * maxAge)+1 },
+        { name: 'Michał', age: Math.floor(Math.random() * maxAge)+1 },
+      ]
+    });
+  }
 
   render() {
+    //internat CSS code in to button 
+    const style ={
+      backgroundColor : 'white',
+      border: '1px solid blue',
+      font: 'inherit',
+      padding: '8px',
+      margin: '5px',
+      cursor: 'pointer',
+    }
+
+
     return (
       <div className="App">
         <h1>Hi, this is my first React App</h1>
         <p> This is some text</p>
+
+        <button 
+        style={style} 
+        onClick={this.drawAgeHandler.bind(this,40)}
+        >Draw the age </button>
+
         <Person
           name={this.state.pesrons[0].name}
           age={this.state.pesrons[0].age} />
