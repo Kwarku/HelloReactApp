@@ -13,17 +13,6 @@ class App extends Component {
     show: false,
   };
 
-  dynamicChangeNameMethodHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: 'Paweł', age: 25 },
-        { name: event.target.value, age: 12 },
-        { name: 'Krystian', age: 35 },
-        { name: 'Michał', age: 27 },
-      ]
-    });
-  }
-
   toggleUsers = () => {
     let isShow = this.state.show;
     this.setState({
@@ -40,6 +29,14 @@ class App extends Component {
         { name: 'Michał', age: Math.floor(Math.random() * maxAge) + 1 },
       ]
     });
+  }
+
+  deletePersonHandler = (index) => {
+    let tempPersons = this.state.persons;
+    tempPersons.splice(index,1)
+    this.setState({
+      persons:tempPersons
+    })
   }
 
   render() {
@@ -65,8 +62,9 @@ class App extends Component {
       personBox = (
         <div>
         {button}
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person,index) => {
             return <Person
+              click={()=>this.deletePersonHandler(index)}
               name={person.name}
               age={person.age} />
           })}
