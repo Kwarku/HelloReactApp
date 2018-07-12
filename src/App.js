@@ -32,7 +32,15 @@ class App extends Component {
   }
 
   deletePersonHandler = (index) => {
-    let tempPersons = this.state.persons;
+    //This is bad way to do this. This is take by referecne
+    // let tempPersons = this.state.persons;
+
+    //this take  by compy.
+    const tempPersons = [...this.state.persons];
+
+    //i can use this aslo. This is eather copy method
+    // let tempPersons = this.state.persons.slice();
+    
     tempPersons.splice(index,1)
     this.setState({
       persons:tempPersons
