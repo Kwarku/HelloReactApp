@@ -43,7 +43,6 @@ class App extends Component {
   }
 
   render() {
-    //internat CSS code in to button 
     const style = {
       backgroundColor: 'white',
       border: '1px solid blue',
@@ -53,34 +52,24 @@ class App extends Component {
       cursor: 'pointer',
     }
 
+    const button = (
+      <button
+        style={style}
+        onClick={this.drawAgeHandler.bind(this, 40)}
+      >Draw the age </button>
+    )
+
     let personBox = null;
 
     if (this.state.show) {
       personBox = (
         <div>
-          <button
-            style={style}
-            onClick={this.drawAgeHandler.bind(this, 40)}
-          >Draw the age </button>
-
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age} />
-
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            change={this.dynamicChangeNameMethodHandler} />
-
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}
-          >My hobby is Math
-          </Person>
-
-          <Person
-            name={this.state.persons[3].name}
-            age={this.state.persons[3].age} />
+        {button}
+          {this.state.persons.map(person => {
+            return <Person
+              name={person.name}
+              age={person.age} />
+          })}
         </div>
       )
     }
