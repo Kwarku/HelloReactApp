@@ -5,10 +5,10 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Paweł', age: 25 },
-      { name: 'Karol', age: 12 },
-      { name: 'Krystian', age: 35 },
-      { name: 'Michał', age: 27 },
+      { id: 'sadf', name: 'Paweł', age: 25 },
+      { id: 'agsd', name: 'Karol', age: 12 },
+      { id: 'wthd', name: 'Krystian', age: 35 },
+      { id: 'sdjg', name: 'Michał', age: 27 },
     ],
     show: false,
   };
@@ -21,12 +21,16 @@ class App extends Component {
   }
 
   drawAgeHandler = (maxAge) => {
+    function rand() {
+      return Math.floor(Math.random() * maxAge) + 1;
+    }
+
     this.setState({
       persons: [
-        { name: 'Paweł', age: Math.floor(Math.random() * maxAge) + 1 },
-        { name: 'Karol', age: Math.floor(Math.random() * maxAge) + 1 },
-        { name: 'Krystian', age: Math.floor(Math.random() * maxAge) + 1 },
-        { name: 'Michał', age: Math.floor(Math.random() * maxAge) + 1 },
+        { id: 'sadf', name: 'Paweł', age: rand() },
+        { id: 'agsd', name: 'Karol', age: rand() },
+        { id: 'wthd', name: 'Krystian', age: rand() },
+        { id: 'sdjg', name: 'Michał', age: rand() },
       ]
     });
   }
@@ -40,10 +44,10 @@ class App extends Component {
 
     //i can use this aslo. This is eather copy method
     // let tempPersons = this.state.persons.slice();
-    
-    tempPersons.splice(index,1)
+
+    tempPersons.splice(index, 1)
     this.setState({
-      persons:tempPersons
+      persons: tempPersons
     })
   }
 
@@ -69,12 +73,13 @@ class App extends Component {
     if (this.state.show) {
       personBox = (
         <div>
-        {button}
-          {this.state.persons.map((person,index) => {
+          {button}
+          {this.state.persons.map((person, index) => {
             return <Person
-              click={()=>this.deletePersonHandler(index)}
+              click={() => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age} />
+              age={person.age}
+              key={person.id} />
           })}
         </div>
       )
