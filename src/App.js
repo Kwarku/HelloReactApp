@@ -36,14 +36,7 @@ class App extends Component {
   }
 
   deletePersonHandler = (index) => {
-    //This is bad way to do this. This is take by referecne
-    // let tempPersons = this.state.persons;
-
-    //this take  by compy.
     const tempPersons = [...this.state.persons];
-
-    //i can use this aslo. This is eather copy method
-    // let tempPersons = this.state.persons.slice();
 
     tempPersons.splice(index, 1)
     this.setState({
@@ -52,28 +45,20 @@ class App extends Component {
   }
 
   changeNameHandler = (event, id) => {
-    //find index of person with id like in argument
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
-
-    // create copy of searhing person
     const changePerson = {
       ...this.state.persons[personIndex]
     };
-    //this is the anather method to do this
-    // const person = Object.assign({}, this.state.persons[personIndex]);
-
-    //change person name into input value
-    changePerson.name = event.target.value;
-
-    //copy of all list 
-    const tempPersons = [...this.state.persons];
     
-    //change our person into person list 
+    changePerson.name = event.target.value;
+    const tempPersons = [
+      ...this.state.persons
+    ];
+    
     tempPersons[personIndex] = changePerson;
-
-    //add list to state
+    
     this.setState({
       persons: tempPersons
     });
