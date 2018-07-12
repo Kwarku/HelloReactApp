@@ -51,6 +51,34 @@ class App extends Component {
     })
   }
 
+  changeNameHandler = (event, id) => {
+    //find index of person with id like in argument
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    // create copy of searhing person
+    const changePerson = {
+      ...this.state.persons[personIndex]
+    };
+    //this is the anather method to do this
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+
+    //change person name into input value
+    changePerson.name = event.target.value;
+
+    //copy of all list 
+    const tempPersons = [...this.state.persons];
+    
+    //change our person into person list 
+    tempPersons[personIndex] = changePerson;
+
+    //add list to state
+    this.setState({
+      persons: tempPersons
+    });
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -79,7 +107,8 @@ class App extends Component {
               click={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
-              key={person.id} />
+              key={person.id}
+              change={(event) => this.changeNameHandler(event, person.id)} />
           })}
         </div>
       )
