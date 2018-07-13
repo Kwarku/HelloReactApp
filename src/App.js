@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -100,18 +100,18 @@ class App extends Component {
       style.backgroundColor = 'red'
     }
 
-    const classes = [];
+    const assignmentClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      assignmentClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      assignmentClasses.push(classes.bold);
     }
 
     return (
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi, this is my first React App</h1>
-          <p className={classes.join(' ')}> This is some text</p>
+          <p className={assignmentClasses.join(' ')}> This is some text</p>
 
           <button
             style={style}
