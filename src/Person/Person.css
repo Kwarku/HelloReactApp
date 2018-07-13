@@ -1,12 +1,16 @@
 .Person{
-    width: 50%;
-    margin: auto;
-    margin-bottom: 10px;
+    width: 60%;
+    margin: 16px auto;
+    /* margin-bottom: 10px; */
     border: 1px solid #ccc;
     box-shadow: 0 2px 3px #aaa;
     padding: 10px;
     text-align: center;
 }
-.Person input{
-    width: 70%;
+
+
+@media(min-width : 500px ){
+    .Person{
+        width: 450px;
+    }
 }
