@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -12,19 +12,16 @@ class App extends Component {
     ],
     show: false,
   };
-
   toggleUsers = () => {
     let isShow = this.state.show;
     this.setState({
       show: !isShow
     })
   }
-
   drawAgeHandler = (maxAge) => {
     function rand() {
       return Math.floor(Math.random() * maxAge) + 1;
     }
-
     this.setState({
       persons: [
         { id: 'sadf', name: 'Paweł', age: rand() },
@@ -34,16 +31,13 @@ class App extends Component {
       ]
     });
   }
-
   deletePersonHandler = (index) => {
     const tempPersons = [...this.state.persons];
-
     tempPersons.splice(index, 1)
     this.setState({
       persons: tempPersons
     })
   }
-
   changeNameHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -51,38 +45,23 @@ class App extends Component {
     const changePerson = {
       ...this.state.persons[personIndex]
     };
-    
     changePerson.name = event.target.value;
     const tempPersons = [
       ...this.state.persons
     ];
-    
     tempPersons[personIndex] = changePerson;
-    
     this.setState({
       persons: tempPersons
     });
   }
-
   render() {
-    const style = {
-      backgroundColor: 'white',
-      border: '1px solid blue',
-      font: 'inherit',
-      padding: '8px',
-      margin: '5px',
-      cursor: 'pointer',
-    }
-
     const button = (
       <button
-        style={style}
         onClick={this.drawAgeHandler.bind(this, 40)}
       >Draw the age </button>
     )
-
     let personBox = null;
-
+    let buttonClass = '';
     if (this.state.show) {
       personBox = (
         <div>
@@ -97,22 +76,26 @@ class App extends Component {
           })}
         </div>
       )
+      buttonClass = classes.red;
     }
-
+    const assignmentClasses = [];
+    if (this.state.persons.length <= 2) {
+      assignmentClasses.push(classes.red);
+    }
+    if (this.state.persons.length <= 1) {
+      assignmentClasses.push(classes.bold);
+    }
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, this is my first React App</h1>
-        <p> This is some text</p>
-
+        <p className={assignmentClasses.join(' ')}> This is some text</p>
         <button
-          style={style}
+          className={buttonClass}
           onClick={this.toggleUsers}
         >Toggle Users </button>
-
         {personBox}
       </div>
     );
   }
 }
-
 export default App;
