@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -66,12 +67,16 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'rgb(78, 231, 86)',
+      backgroundColor: 'blue',
       border: '1px solid blue',
       font: 'inherit',
       padding: '8px',
       margin: '5px',
       cursor: 'pointer',
+      ':hover':{
+        backgroundColor: 'lightblue',
+        color : 'black'
+      }
     }
 
     const button = (
@@ -86,7 +91,7 @@ class App extends Component {
     if (this.state.show) {
       personBox = (
         <div>
-          {button}
+          {/* {button} */}
           {this.state.persons.map((person, index) => {
             return <Person
               click={() => this.deletePersonHandler(index)}
@@ -97,7 +102,12 @@ class App extends Component {
           })}
         </div>
       )
-      style.backgroundColor = 'rgb(223, 48, 48)'
+      style.backgroundColor = 'red'
+      style[':hover']={
+          backgroundColor: 'salom',
+          color : 'white'
+        
+      }
     }
 
     const classes =[];
@@ -124,4 +134,9 @@ class App extends Component {
   }
 }
 
-export default App;
+//1. To do that i need install packege into node_module.
+//    - sudo npm install --save radium
+//2. import radium 
+//3. export app like radium method argument   <- it works on component class and function
+
+export default Radium(App);
