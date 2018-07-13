@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -52,14 +52,14 @@ class App extends Component {
     const changePerson = {
       ...this.state.persons[personIndex]
     };
-    
+
     changePerson.name = event.target.value;
     const tempPersons = [
       ...this.state.persons
     ];
-    
+
     tempPersons[personIndex] = changePerson;
-    
+
     this.setState({
       persons: tempPersons
     });
@@ -73,9 +73,9 @@ class App extends Component {
       padding: '8px',
       margin: '5px',
       cursor: 'pointer',
-      ':hover':{
+      ':hover': {
         backgroundColor: 'lightblue',
-        color : 'black'
+        color: 'black'
       }
     }
 
@@ -103,33 +103,35 @@ class App extends Component {
         </div>
       )
       style.backgroundColor = 'red'
-      style[':hover']={
-          backgroundColor: 'salom',
-          color : 'white'
-        
+      style[':hover'] = {
+        backgroundColor: 'salom',
+        color: 'white'
+
       }
     }
 
-    const classes =[];
-    if(this.state.persons.length <=2){
+    const classes = [];
+    if (this.state.persons.length <= 2) {
       classes.push('red');
     }
-    if(this.state.persons.length <= 1){
+    if (this.state.persons.length <= 1) {
       classes.push('bold');
     }
 
     return (
-      <div className="App">
-        <h1>Hi, this is my first React App</h1>
-        <p className={classes.join(' ')}> This is some text</p>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, this is my first React App</h1>
+          <p className={classes.join(' ')}> This is some text</p>
 
-        <button
-          style={style}
-          onClick={this.toggleUsers}
-        >Toggle Users </button>
+          <button
+            style={style}
+            onClick={this.toggleUsers}
+          >Toggle Users </button>
 
-        {personBox}
-      </div>
+          {personBox}
+        </div>
+      </StyleRoot>
     );
   }
 }
@@ -138,5 +140,6 @@ class App extends Component {
 //    - sudo npm install --save radium
 //2. import radium 
 //3. export app like radium method argument   <- it works on component class and function
+//4. to add @media tag must import {StyleRoot} from Radium package and close whole application into this tag
 
 export default Radium(App);

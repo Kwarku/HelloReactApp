@@ -6,6 +6,7 @@
     box-shadow: 0 2px 3px #aaa;
     padding: 10px;
     text-align: center;
-
-
+}
+.Person input{
+    width: 70%;
 }
