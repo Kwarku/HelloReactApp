@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -72,11 +71,7 @@ class App extends Component {
       font: 'inherit',
       padding: '8px',
       margin: '5px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightblue',
-        color: 'black'
-      }
+      cursor: 'pointer'
     }
 
     const button = (
@@ -103,11 +98,6 @@ class App extends Component {
         </div>
       )
       style.backgroundColor = 'red'
-      style[':hover'] = {
-        backgroundColor: 'salom',
-        color: 'white'
-
-      }
     }
 
     const classes = [];
@@ -119,7 +109,6 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
         <div className="App">
           <h1>Hi, this is my first React App</h1>
           <p className={classes.join(' ')}> This is some text</p>
@@ -131,15 +120,8 @@ class App extends Component {
 
           {personBox}
         </div>
-      </StyleRoot>
     );
   }
 }
 
-//1. To do that i need install packege into node_module.
-//    - sudo npm install --save radium
-//2. import radium 
-//3. export app like radium method argument   <- it works on component class and function
-//4. to add @media tag must import {StyleRoot} from Radium package and close whole application into this tag
-
-export default Radium(App);
+export default App;
