@@ -65,28 +65,19 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'blue',
-      border: '1px solid blue',
-      font: 'inherit',
-      padding: '8px',
-      margin: '5px',
-      cursor: 'pointer'
-    }
-
     const button = (
       <button
-        style={style}
         onClick={this.drawAgeHandler.bind(this, 40)}
       >Draw the age </button>
     )
 
     let personBox = null;
+    let buttonClass = '';
 
     if (this.state.show) {
       personBox = (
         <div>
-          {/* {button} */}
+          {button}
           {this.state.persons.map((person, index) => {
             return <Person
               click={() => this.deletePersonHandler(index)}
@@ -97,7 +88,7 @@ class App extends Component {
           })}
         </div>
       )
-      style.backgroundColor = 'red'
+      buttonClass = classes.red;
     }
 
     const assignmentClasses = [];
@@ -109,17 +100,17 @@ class App extends Component {
     }
 
     return (
-        <div className={classes.App}>
-          <h1>Hi, this is my first React App</h1>
-          <p className={assignmentClasses.join(' ')}> This is some text</p>
+      <div className={classes.App}>
+        <h1>Hi, this is my first React App</h1>
+        <p className={assignmentClasses.join(' ')}> This is some text</p>
 
-          <button
-            style={style}
-            onClick={this.toggleUsers}
-          >Toggle Users </button>
+        <button
+          className={buttonClass}
+          onClick={this.toggleUsers}
+        >Toggle Users </button>
 
-          {personBox}
-        </div>
+        {personBox}
+      </div>
     );
   }
 }
