@@ -4,15 +4,38 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: 'sadf', name: 'Paweł', age: 25 },
-      { id: 'agsd', name: 'Karol', age: 12 },
-      { id: 'wthd', name: 'Krystian', age: 35 },
-      { id: 'sdjg', name: 'Michał', age: 27 },
-    ],
-    show: false,
-  };
+  constructor(props){
+    super(props);
+    console.log('[App.js] msg from constructor');
+
+    this.state = {
+      persons: [
+        { id: 'sadf', name: 'Paweł', age: 25 },
+        { id: 'agsd', name: 'Karol', age: 12 },
+        { id: 'wthd', name: 'Krystian', age: 35 },
+        { id: 'sdjg', name: 'Michał', age: 27 },
+      ],
+      show: false,
+    };
+  }
+
+  componentWillMount(){
+    console.log('[App.js] msg from componnetWillMount()');
+  }
+  componentDidMount(){
+    console.log('[App.js] msg from componentDidMount()');
+  }
+
+
+  // state = {
+  //   persons: [
+  //     { id: 'sadf', name: 'Paweł', age: 25 },
+  //     { id: 'agsd', name: 'Karol', age: 12 },
+  //     { id: 'wthd', name: 'Krystian', age: 35 },
+  //     { id: 'sdjg', name: 'Michał', age: 27 },
+  //   ],
+  //   show: false,
+  // };
   toggleUsers = () => {
     let isShow = this.state.show;
     this.setState({
@@ -43,6 +66,8 @@ class App extends Component {
     });
   }
   render() {
+console.log('[App.js] msg from render()');
+
     let personBox = null;
 
     if (this.state.show) {
