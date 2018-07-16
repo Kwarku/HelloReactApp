@@ -13,6 +13,21 @@ class Persons extends Component{
   componentDidMount(){
     console.log('[Persons.js] msg from componentDidMount()');
   }
+  componentWillReceiveProps(nextProps){
+    console.log('[UPDATE Presons.js] msg from componentWillReceiveProps() ' , nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    console.log('[UPDATE Persons.js] msg from shouldComponentUpdate() ', nextProps , nextState);
+    return nextProps.persons !== this.props.persons;
+  }
+
+  componentWillUpdate(nextProps,nextState){
+    console.log('[UPDATE Persons.js] msg from componentWillUpdate()' , nextProps,nextState);
+  }
+  componentDidUpdate(){
+    console.log('[UPDATE Persons.js] msg from componentDidUpdate()');
+  }
 
   render(){
     console.log('[Persons.js] msg from render()');
