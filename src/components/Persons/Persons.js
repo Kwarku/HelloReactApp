@@ -40,7 +40,8 @@ class Persons extends PureComponent{
           name={person.name}
           age={person.age}
           key={person.id}
-          change={(event) => this.props.changed(event, person.id)} />
+          change={(event) => this.props.changed(event, person.id)} 
+          possition={index}/>
       })
     );
   }
