@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import withClass from  '../hoc/withClass';
+import withClass from '../hoc/withClass';
 import Aux from '../hoc/Aux';
 
 
 class App extends PureComponent {
-  constructor(props){
+  constructor(props) {
     super(props);
     console.log('[App.js] msg from constructor');
 
@@ -19,13 +19,14 @@ class App extends PureComponent {
         { id: 'sdjg', name: 'Michał', age: 27 },
       ],
       show: false,
+      toggleNumber: 0,
     };
   }
 
-  componentWillMount(){
+  componentWillMount() {
     console.log('[App.js] msg from componnetWillMount()');
   }
-  componentDidMount(){
+  componentDidMount() {
     console.log('[App.js] msg from componentDidMount()');
   }
   // shouldComponentUpdate(nextProps, nextState){
@@ -34,10 +35,10 @@ class App extends PureComponent {
   //   nextState.show !== this.state.show;
   // }
 
-  componentWillUpdate(nextProps,nextState){
-    console.log('[UPDATE App.js] msg from componentWillUpdate()' , nextProps,nextState);
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] msg from componentWillUpdate()', nextProps, nextState);
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
     console.log('[UPDATE App.js] msg from componentDidUpdate()');
   }
 
@@ -52,9 +53,11 @@ class App extends PureComponent {
   // };
   toggleUsers = () => {
     let isShow = this.state.show;
-    this.setState({
-      show: !isShow
+    this.setState((PrevState, props) => ({
+      show: !isShow,
+      toggleNumber: PrevState.toggleNumber + 1
     })
+    )
   }
   deletePersonHandler = (index) => {
     const tempPersons = [...this.state.persons];
@@ -80,7 +83,7 @@ class App extends PureComponent {
     });
   }
   render() {
-console.log('[App.js] msg from render()');
+    console.log('[App.js] msg from render()');
 
     let personBox = null;
 
@@ -94,7 +97,7 @@ console.log('[App.js] msg from render()');
 
     return (
       <Aux>
-      <button onClick={() => { this.setState({show:true});}} >Show persons</button>
+        <button onClick={() => { this.setState({ show: true }); }} >Show persons</button>
         <Cockpit
           title={this.props.title}
           show={this.state.show}
@@ -106,4 +109,4 @@ console.log('[App.js] msg from render()');
     );
   }
 }
-export default withClass(App,classes.App);
+export default withClass(App, classes.App);
