@@ -1,13 +1,14 @@
 import React from 'react';
+import Aux from '../../hoc/Aux';
 import classes from './Cockpit.css';
 
 const cockipit = (props) => {
     const assignmentClasses = [];
     
-    let btnClass = '';
+    let btnClass = classes.Button;
 
     if(props.show){
-        btnClass = classes.red;
+        btnClass = [classes.Button,classes.red].join(' ');
     }
 
 
@@ -20,7 +21,7 @@ const cockipit = (props) => {
     }
 
     return (
-        <div className={classes.Cockpit}>
+       <Aux>
             <h1>{props.title}</h1>
             <p className={assignmentClasses.join(' ')}>
                 This is some text</p>
@@ -28,7 +29,7 @@ const cockipit = (props) => {
                 className={btnClass}
                 onClick={props.clicked}
             >Toggle Users </button>
-        </div>
+       </Aux>
 
     );
 
