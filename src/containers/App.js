@@ -90,6 +90,7 @@ console.log('[App.js] msg from render()');
 
     return (
       <div className={classes.App}>
+      <button onClick={() => { this.setState({show:true});}} >Show persons</button>
         <Cockpit
           title={this.props.title}
           show={this.state.show}
