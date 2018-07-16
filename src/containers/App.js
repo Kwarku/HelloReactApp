@@ -19,19 +19,6 @@ class App extends Component {
       show: !isShow
     })
   }
-  drawAgeHandler = (maxAge) => {
-    function rand() {
-      return Math.floor(Math.random() * maxAge) + 1;
-    }
-    this.setState({
-      persons: [
-        { id: 'sadf', name: 'Paweł', age: rand() },
-        { id: 'agsd', name: 'Karol', age: rand() },
-        { id: 'wthd', name: 'Krystian', age: rand() },
-        { id: 'sdjg', name: 'Michał', age: rand() },
-      ]
-    });
-  }
   deletePersonHandler = (index) => {
     const tempPersons = [...this.state.persons];
     tempPersons.splice(index, 1)
@@ -56,11 +43,6 @@ class App extends Component {
     });
   }
   render() {
-    const button = (
-      <button
-        onClick={this.drawAgeHandler.bind(this, 40)}
-      >Draw the age </button>
-    )
     let personBox = null;
 
     if (this.state.show) {
@@ -74,6 +56,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          title={this.props.title}
           show={this.state.show}
           persons={this.state.persons}
           clicked={this.toggleUsers}

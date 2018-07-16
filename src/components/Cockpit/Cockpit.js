@@ -21,7 +21,7 @@ const cockipit = (props) => {
 
     return (
         <div className={classes.Cockpit}>
-            <h1>Hi, this is my first React App</h1>
+            <h1>{props.title}</h1>
             <p className={assignmentClasses.join(' ')}>
                 This is some text</p>
             <button
